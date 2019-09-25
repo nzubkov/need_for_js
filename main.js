@@ -38,9 +38,10 @@ function startGame() {
     const enemy = document.createElement('div')
     enemy.classList.add('enemy')
     enemy.y = -100 * setting.traffic * (i + 1)
-    enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px'
+    enemy.style.left = Math.round(Math.random() * (gameArea.offsetWidth - 50) + enemy.offsetWidth) + 'px'
     enemy.style.top = enemy.y + 'px'
-    enemy.style.background = "transparent url(./image/enemy2.png) center / cover no-repeat";
+    let enemyCarImageNumber = Math.round(Math.random()) === 1 ? 1 : 2
+    enemy.style.background = `transparent url(./image/enemy${enemyCarImageNumber}.png) center / cover no-repeat`;
     gameArea.appendChild(enemy)
   }
   setting.score = 0
@@ -53,6 +54,15 @@ function startGame() {
   setting.y = car.offsetTop
   requestAnimationFrame(playGame)
 }
+
+const keys = {
+  ArrowUp: false,
+  ArrowDown: false,
+  ArrowRight: false,
+  ArrowLeft: false
+}
+
+Object.preventExtensions(keys) //запрещаем модификацию keys
 
 function playGame() {
   moveRoad()
@@ -80,13 +90,6 @@ function playGame() {
 
     requestAnimationFrame(playGame)
   }
-}
-
-const keys = {
-  ArrowUp: false,
-  ArrowDown: false,
-  ArrowRight: false,
-  ArrowLeft: false
 }
 
 function startRun(event) {
@@ -117,10 +120,11 @@ function moveEnemy() {
   enemies.forEach(function(enemy) {
     let carRect = car.getBoundingClientRect()
     let enemyRect = enemy.getBoundingClientRect()
-    if(carRect.top <= enemyRect.bottom 
-       && carRect.right >= enemyRect.left 
-       && carRect.left <= enemyRect.right
-       && carRect.bottom >= enemyRect.top) {
+    let crush = (carRect.top <= enemyRect.bottom
+      && carRect.right >= enemyRect.left
+      && carRect.left <= enemyRect.right
+      && carRect.bottom >= enemyRect.top)
+    if(crush) {
       setting.start = false
       start.classList.remove('hide')
       score.style.top = start.offsetHeight
