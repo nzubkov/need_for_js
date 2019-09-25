@@ -41,7 +41,7 @@ function startGame() {
     enemy.style.background = "transparent url(./image/enemy2.png) center / cover no-repeat";
     gameArea.appendChild(enemy)
   }
-  
+  setting.score = 0
   setting.start = true
   gameArea.appendChild(car)
   setting.x = car.offsetLeft
