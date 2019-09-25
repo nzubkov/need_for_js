@@ -23,7 +23,8 @@ function getQuantityElements(heightElement) {
 }
 
 function startGame() {
-  start.style.display = 'none'
+  start.classList.add('hide')
+  score.style.top = '0px' //автоматически выставляется 88px, после рестарта игры, хотя у start display none
   gameArea.innerHTML = ''
   for(let i = 0; i < getQuantityElements(100); i++){
     const line = document.createElement('div')
@@ -121,7 +122,7 @@ function moveEnemy() {
        && carRect.left <= enemyRect.right
        && carRect.bottom >= enemyRect.top) {
       setting.start = false
-      start.style.display = 'block'
+      start.classList.remove('hide')
       score.style.top = start.offsetHeight
     }
     enemy.y += setting.speed / 2
