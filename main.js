@@ -24,6 +24,7 @@ function getQuantityElements(heightElement) {
 
 function startGame() {
   start.style.display = 'none'
+  gameArea.innerHTML = ''
   for(let i = 0; i < getQuantityElements(100); i++){
     const line = document.createElement('div')
     line.classList.add('line')
