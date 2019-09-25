@@ -12,8 +12,8 @@ document.addEventListener('keyup', stopRun)
 const setting = {
   start: false,
   score: 0,
-  speed: 3,
-  traffic: 3,
+  speed: 5,
+  traffic: 6,
   x: 0,
   y: 0
 }
@@ -38,6 +38,7 @@ function startGame() {
     const enemy = document.createElement('div')
     enemy.classList.add('enemy')
     enemy.y = -100 * setting.traffic * (i + 1)
+    enemy.speed = getRandomInt(2, setting.speed * 1.1) / 2
     enemy.style.left = Math.round(Math.random() * (gameArea.offsetWidth - 50) + enemy.offsetWidth) + 'px'
     enemy.style.top = enemy.y + 'px'
     let enemyCarImageNumber = Math.round(Math.random()) === 1 ? 1 : 2
@@ -129,7 +130,8 @@ function moveEnemy() {
       start.classList.remove('hide')
       score.style.top = start.offsetHeight
     }
-    enemy.y += setting.speed / 2
+    
+    enemy.y += enemy.speed
   
     enemy.style.top = enemy.y + 'px'
   
@@ -138,4 +140,10 @@ function moveEnemy() {
       enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px'
     }
   })
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
