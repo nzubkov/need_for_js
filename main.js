@@ -56,8 +56,7 @@ function startGame() {
   requestAnimationFrame(playGame)
 }
 
-function setEnemyImage()
-{
+function setEnemyImage() {
   let enemyCarImageNumber = Math.round(Math.random()) === 1 ? 1 : 2
   return `transparent url(./image/enemy${enemyCarImageNumber}.png) center / cover no-repeat`
 }
@@ -75,7 +74,6 @@ function playGame() {
   moveRoad()
   moveEnemy()
   if (setting.start) {
-    setting.score += setting.speed
     score.innerHTML = 'SCORE<br>' + setting.score
     if(keys.ArrowLeft && setting.x > 0) {
       setting.x -= setting.speed
@@ -131,24 +129,38 @@ function moveEnemy() {
       && carRect.right >= enemyRect.left
       && carRect.left <= enemyRect.right
       && carRect.bottom >= enemyRect.top)
-    if(crush) {
+    if(crush){
       setting.start = false
       start.classList.remove('hide')
       score.style.top = start.offsetHeight
+      let record = getRecord()
+      score.innerHTML += '<br> Рекорд игры: ' + record
+      if(setting.score > record) {
+        setRecord(setting.score)
+        score.innerHTML += '<br> Поздравляем! Вы установили новый рекорд!'
+      }
     }
-    
     enemy.y += enemy.speed
-  
     enemy.style.top = enemy.y + 'px'
-  
     if(enemy.y >= document.documentElement.clientHeight) {
       enemy.y = -100 * setting.traffic
       enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px'
       enemy.speed = getRandomInt(2, setting.speed * 1.5) / 2
+      setting.score += setting.speed + enemy.speed * 10
       enemy.style.background = setEnemyImage()
     }
   })
 }
+
+function setRecord(score){
+  window.localStorage.setItem('recordScore', score)
+}
+
+function getRecord(){
+  let result = window.localStorage.getItem('recordScore')
+  return result ? result : 0
+}
+
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
