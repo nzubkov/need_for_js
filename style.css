@@ -96,9 +96,10 @@ table {
     top: 0;
     left: 0;
     width: 100%;
+    margin: 0;
     background: black;
     padding: 1rem 0;
-    z-index: 200;
+    z-index: 199;
     font-size: 1.5rem;
     color: skyblue;
     text-align: center;
