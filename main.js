@@ -54,7 +54,7 @@ function playGame() {
   moveEnemy()
   if (setting.start) {
     setting.score += setting.speed
-    score.textContent = setting.score
+    score.innerHTML = 'SCORE<br>' + setting.score
     if(keys.ArrowLeft && setting.x > 0) {
       setting.x -= setting.speed
     }
