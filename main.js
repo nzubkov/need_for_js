@@ -53,6 +53,8 @@ function playGame() {
   moveRoad()
   moveEnemy()
   if (setting.start) {
+    setting.score += setting.speed
+    score.textContent = setting.score
     if(keys.ArrowLeft && setting.x > 0) {
       setting.x -= setting.speed
     }
