@@ -41,8 +41,8 @@ function startGame() {
     enemy.speed = getRandomInt(2, setting.speed * 1.1) / 2
     enemy.style.left = Math.round(Math.random() * (gameArea.offsetWidth - 50) + enemy.offsetWidth) + 'px'
     enemy.style.top = enemy.y + 'px'
-    let enemyCarImageNumber = Math.round(Math.random()) === 1 ? 1 : 2
-    enemy.style.background = `transparent url(./image/enemy${enemyCarImageNumber}.png) center / cover no-repeat`;
+    
+    enemy.style.background = setEnemyImage()
     gameArea.appendChild(enemy)
   }
   setting.score = 0
@@ -54,6 +54,12 @@ function startGame() {
   setting.x = car.offsetLeft
   setting.y = car.offsetTop
   requestAnimationFrame(playGame)
+}
+
+function setEnemyImage()
+{
+  let enemyCarImageNumber = Math.round(Math.random()) === 1 ? 1 : 2
+  return `transparent url(./image/enemy${enemyCarImageNumber}.png) center / cover no-repeat`
 }
 
 const keys = {
@@ -138,6 +144,8 @@ function moveEnemy() {
     if(enemy.y >= document.documentElement.clientHeight) {
       enemy.y = -100 * setting.traffic
       enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px'
+      enemy.speed = getRandomInt(2, setting.speed * 1.5) / 2
+      enemy.style.background = setEnemyImage()
     }
   })
 }
