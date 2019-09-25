@@ -47,8 +47,6 @@ table {
      height: 113px;
      background: transparent url('./image/player_silver.png') center / cover no-repeat;
      position: absolute;
-     left: 125px;
-     bottom: 10px;
  }
 
 .enemy {
