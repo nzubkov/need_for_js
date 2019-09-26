@@ -42,6 +42,7 @@ function startGame() {
     enemy.style.left = Math.round(Math.random() * (gameArea.offsetWidth - 50) + enemy.offsetWidth) + 'px'
     enemy.style.top = enemy.y + 'px'
     
+    
     enemy.style.background = setEnemyImage()
     gameArea.appendChild(enemy)
   }
