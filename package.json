@@ -1,0 +1,32 @@
+{
+  "name": "nfjs",
+  "version": "1.0.0",
+  "description": "The game developed during intensive lessons on study.up-skills.ru",
+  "main": "script.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzubkov/need_for_js.git"
+  },
+  "keywords": [
+    "need_for_js",
+    "need-for-js",
+    "game",
+    "javascript"
+  ],
+  "author": "Nikolay Zubkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nzubkov/need_for_js/issues"
+  },
+  "homepage": "https://github.com/nzubkov/need_for_js#readme",
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-packager": "^14.0.6",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  }
+}
